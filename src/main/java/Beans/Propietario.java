@@ -65,11 +65,11 @@ public class Propietario extends Persona{
     }
     
     public String toCsvString(){
-        return id + "," + direccion + "," + telefono + "," + email + "," + profesion + "," + oficio + "," + getNombre() + "," + getEdad();
+        return id + ":" + direccion + ":" + telefono + ":" + email + ":" + profesion + ":" + oficio + ":" + getNombre() + ":" + getEdad();
     }
 
     public static Propietario fromCsvString(String str){
-        String[] partes = str.split(",");
+        String[] partes = str.split(":");
         return new Propietario(Integer.parseInt(partes[0]), partes[1], partes[2], partes[3], partes[4], partes[5], partes[6], Integer.parseInt(partes[7]));
     }
     @Override

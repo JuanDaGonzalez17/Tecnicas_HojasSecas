@@ -46,6 +46,7 @@ public class AgendaPropiedades {
             }
         }
         if(bandera == false){
+            listaPropiedades.addAll(listaRecuperadaPropiedades);
             listaPropiedades.add(propiedad); 
         }
         try {

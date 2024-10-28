@@ -91,9 +91,9 @@ public class AgendaMultas {
     
     public void guardarFichero() {
         Gson gson = new Gson();
-        String ruta = "C:\\Usuario\\Documents\\NetBeansProjects\\ArchivoJSON\\src\\Datos\\datosJson1.json";
+        //String ruta = "C:\\Usuario\\Documents\\NetBeansProjects\\ArchivoJSON\\src\\Datos\\datosJson1.json";
 
-        try (BufferedWriter bw2 = new BufferedWriter(new FileWriter(ruta))) {
+        try (BufferedWriter bw2 = new BufferedWriter(new FileWriter("multa.json"))) {
             String jsonString = gson.toJson(listaMultas);
             bw2.write(jsonString);
         } catch (IOException ex) {
@@ -103,9 +103,9 @@ public class AgendaMultas {
     
     public void leerFichero() {
         Gson gson = new Gson();
-        String ruta = "C:\\Usuario\\Documents\\NetBeansProjects\\ArchivoJSON\\src\\Datos\\datosJson1.json";
+        //String ruta = "C:\\Usuario\\Documents\\NetBeansProjects\\ArchivoJSON\\src\\Datos\\datosJson1.json";
 
-        try (Reader reader = new FileReader(ruta)) {
+        try (Reader reader = new FileReader("multa.json")) {
             // Creamos un tipo que representa un array de Multa
             Type tipoListaMultas = new TypeToken<List<Multa>>(){}.getType();
 
@@ -118,9 +118,9 @@ public class AgendaMultas {
     
     public void actualizarFichero(List<Multa> listado){
         Gson gson = new Gson();
-        String ruta = "C:\\Usuario\\Documents\\NetBeansProjects\\ArchivoJSON\\src\\Datos\\datosJson1.json";
+        //String ruta = "C:\\Usuario\\Documents\\NetBeansProjects\\ArchivoJSON\\src\\Datos\\datosJson1.json";
 
-        try (BufferedWriter bw2 = new BufferedWriter(new FileWriter(ruta))) {
+        try (BufferedWriter bw2 = new BufferedWriter(new FileWriter("multa.json"))) {
             String jsonString = gson.toJson(listado);
             bw2.write(jsonString);
         } catch (IOException ex) {

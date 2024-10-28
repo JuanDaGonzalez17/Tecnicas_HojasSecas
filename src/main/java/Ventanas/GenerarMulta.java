@@ -5,6 +5,7 @@
 package Ventanas;
 import Utilidades.Modelo;
 import Beans.Multa;
+import java.io.IOException;
 /**
  *
  * @author Juan David
@@ -67,6 +68,7 @@ public class GenerarMulta extends javax.swing.JFrame {
         jTextArea4 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(632, 605));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("ID:");
@@ -172,6 +174,17 @@ public class GenerarMulta extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            Modelo.AGENDAPROPIETARIOS.leerFichero();
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.getMessage();
+        }
+        try {
+            Modelo.AGENDAPROPIEDADES.leerFichero();
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.getMessage();
+        }
+        
         if(Modelo.AGENDAPROPIETARIOS.obtenerPropietario(Integer.parseInt(jTextField7.getText())) == null){
             JOptionPane.showMessageDialog(this, "El propietario no existe, crear el propietario antes de crear la factura");
         }

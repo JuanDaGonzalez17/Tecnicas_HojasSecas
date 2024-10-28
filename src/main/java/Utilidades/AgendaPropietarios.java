@@ -35,6 +35,8 @@ public class AgendaPropietarios {
     List<Propietario> listaRecuperadaPropietarios = new ArrayList<>();
     
     public void adicionarPropietarios(Propietario propietario){
+        
+        listaPropietarios.addAll(listaRecuperadaPropietarios);
         listaPropietarios.add(propietario); 
         try {
             guardarFichero();

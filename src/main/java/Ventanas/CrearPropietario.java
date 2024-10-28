@@ -5,6 +5,7 @@
 package Ventanas;
 import Beans.Propietario;
 import Utilidades.Modelo;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 /**
  *
@@ -136,6 +137,12 @@ public class CrearPropietario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            Modelo.AGENDAPROPIETARIOS.leerFichero();
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.getMessage();
+        }
+        
         Modelo.AGENDAPROPIETARIOS.adicionarPropietarios(new Propietario(Integer.parseInt(jTextField1.getText()), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), jTextField7.getText(), Integer.parseInt(jTextField8.getText())));
         
         jTextField1.setText("");
@@ -154,6 +161,12 @@ public class CrearPropietario extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            Modelo.AGENDAPROPIETARIOS.leerFichero();
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.getMessage();
+        }
+        
         Modelo.AGENDAPROPIETARIOS.actualizarPropietario(new Propietario(Integer.parseInt(jTextField1.getText()), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), jTextField7.getText(), Integer.parseInt(jTextField8.getText())));
         
         jTextField1.setText("");
@@ -168,7 +181,13 @@ public class CrearPropietario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(jTextField1.getText() == ""){
+        try {
+            Modelo.AGENDAPROPIETARIOS.leerFichero();
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.getMessage();
+        }
+        
+        if("".equals(jTextField1.getText())){
             JOptionPane.showMessageDialog(this, "Ingrese la ID del propietario para poder borrarlo");
         }else{
             Modelo.AGENDAPROPIETARIOS.eliminarPropietario(Modelo.AGENDAPROPIETARIOS.obtenerIndice(Integer.parseInt(jTextField1.getText())));

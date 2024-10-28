@@ -28,17 +28,7 @@ public class AgendaUsuario {
     
     
     public void adicionarUsuario(Usuario usuario){
-        boolean bandera = false;
-        for(Usuario objUsuario : listaRecuperadaUsuarios){
-            if(objUsuario.getPassword().equals(usuario.getPassword())){
-                bandera = true;
-            }else{
-                bandera = false;
-            }
-        }
-        if(bandera == false){
-            listaUsuarios.add(usuario); 
-        }
+        listaUsuarios.add(usuario);
         try {
             guardarFichero();
         } catch (IOException ex) {
@@ -47,7 +37,6 @@ public class AgendaUsuario {
     }
     
     public void eliminarUsuario(String password){
-        
         for(Usuario usuario : listaRecuperadaUsuarios){
             if(usuario.getPassword().equals(password)){
                 listaRecuperadaUsuarios.remove(usuario);

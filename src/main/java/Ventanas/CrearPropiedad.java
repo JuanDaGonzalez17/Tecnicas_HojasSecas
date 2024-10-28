@@ -7,6 +7,7 @@ package Ventanas;
 import Utilidades.Modelo;
 import javax.swing.JOptionPane;
 import Beans.Propiedad;
+import java.io.IOException;
 
 /**
  *
@@ -62,6 +63,8 @@ public class CrearPropiedad extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Metros Cuadrados:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+
+        jTextField1.setMinimumSize(new java.awt.Dimension(708, 447));
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 140, -1));
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 140, -1));
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 140, -1));
@@ -97,19 +100,43 @@ public class CrearPropiedad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            Modelo.AGENDAPROPIETARIOS.leerFichero();
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.getMessage();
+        }
+        
         if(Modelo.AGENDAPROPIETARIOS.obtenerPropietario(Integer.parseInt(jTextField2.getText())) == null){
-            JOptionPane.showMessageDialog(this, "El propietario no existe, crear el propietario antes de crear la factura");
+            JOptionPane.showMessageDialog(this, "El propietario no existe, crear el propietario antes de crear la propiedad");
         }else{   
         Modelo.AGENDAPROPIEDADES.adicionarPropiedades(new Propiedad(Integer.parseInt(jTextField1.getText()), 0.0 , Modelo.AGENDAPROPIETARIOS.obtenerPropietario(Integer.parseInt(jTextField2.getText())), Double.parseDouble(jTextField3.getText())));
         }
+        
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        double saldo = Modelo.AGENDAPROPIEDADES.obtenerPropiedad(Integer.parseInt(jTextField1.getText())).getSaldoActual();
+        
+        Modelo.AGENDAPROPIEDADES.actualizarPropiedad(new Propiedad(Integer.parseInt(jTextField1.getText()), saldo, Modelo.AGENDAPROPIETARIOS.obtenerPropietario(Integer.parseInt(jTextField2.getText())), Double.parseDouble(jTextField3.getText())));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        try {
+            Modelo.AGENDAPROPIEDADES.leerFichero();
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.getMessage();
+        }
+        
+        if("".equals(jTextField1.getText())){
+            JOptionPane.showMessageDialog(this, "Ingrese la ID de la propiedad para poder borrarla");
+        }else{
+            Modelo.AGENDAPROPIEDADES.eliminarPropiedad(Modelo.AGENDAPROPIEDADES.obtenerIndice(Integer.parseInt(jTextField1.getText())));
+            JOptionPane.showMessageDialog(this, "Su propiedad ha sido borrada con exito!");
+            jTextField1.setText("");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

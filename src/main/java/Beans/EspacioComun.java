@@ -59,11 +59,11 @@ public class EspacioComun {
     }
     
     public String toCsvString(){
-        return descripcion + "," + horaInicio + "," + horaCierre + "," + capacidadMaxima + "," + String.join("|", diasServicio);
+        return descripcion + ":" + horaInicio + ":" + horaCierre + ":" + capacidadMaxima + ":" + String.join("|", diasServicio);
     }
     
     public static EspacioComun fromCsvString(String str){
-        String[] partes = str.split(",");
+        String[] partes = str.split(":");
         return new EspacioComun(partes[0], partes[1], partes[2], Integer.parseInt(partes[3]), new ArrayList<String>(Arrays.asList(partes[4].split("\\|"))));
     }
 

@@ -138,11 +138,11 @@ public class Multa {
     }
     
     public String toCsvString(){
-        return ID + "," + fechaMulta + "," + fechaEventoMulta + "," + espacioComun.toCsvString() + "," + propiedad.toCsvString() + "," + propietario.toCsvString() + "," + personaOriginariaEvento + "," + descripcionEvento + "," + evento + "," + valorMulta + "," + fechaMaximaPago + "," + observacion + "," + mensaje + "," + evidencia;
+        return ID + ":" + fechaMulta + ":" + fechaEventoMulta + ":" + espacioComun.toCsvString() + ":" + propiedad.toCsvString() + ":" + propietario.toCsvString() + ":" + personaOriginariaEvento + ":" + descripcionEvento + ":" + evento + ":" + valorMulta + ":" + fechaMaximaPago + ":" + observacion + ":" + mensaje + ":" + evidencia;
     }
     
     public static Multa fromCsvString(String str){
-        String[] partes = str.split(",");
+        String[] partes = str.split(":");
         return new Multa(Integer.parseInt(partes[0]), partes[1], partes[2], EspacioComun.fromCsvString(partes[3]), Propiedad.fromCsvString(partes[4]), Propietario.fromCsvString(partes[5]), partes[6], partes[7], partes[8], Double.parseDouble(partes[9]), partes[10], partes[11], partes[12], partes[13]);
     }
 

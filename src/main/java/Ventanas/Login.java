@@ -43,6 +43,7 @@ public class Login extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(513, 416));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
         jLabel1.setText("Login");
@@ -88,7 +89,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(138, Short.MAX_VALUE)
+                .addContainerGap(142, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -97,9 +98,7 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel3)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(17, 17, 17)
-                                    .addComponent(jLabel2)))
+                                .addComponent(jLabel2))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
@@ -129,7 +128,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,12 +140,12 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            Modelo.AGENDAFACTURAS.leerFichero();
+            Modelo.AGENDAUSUARIOS.leerFichero();
         } catch (IOException | ClassNotFoundException ex) {
             ex.getMessage();
         }
         
-        //if(Modelo.AGENDAUSUARIOS.encontrarUsuario(jTextField1.getText(), jTextField2.getText(), jComboBox1.getSelectedItem().toString())){
+        if(Modelo.AGENDAUSUARIOS.encontrarUsuario(jTextField1.getText(), jTextField2.getText(), jComboBox1.getSelectedItem().toString())){
             if("Empleado".equals(jComboBox1.getSelectedItem().toString())){
                 MenuEmpleado menuEmpleado = new MenuEmpleado();
                 menuEmpleado.setVisible(true);
@@ -157,10 +156,9 @@ public class Login extends javax.swing.JFrame {
                 MenuPropietario menuPropietario = new MenuPropietario();
                 menuPropietario.setVisible(true);
             }
-            JOptionPane.showMessageDialog(this, Modelo.AGENDAUSUARIOS.encontrarUsuario("cris", "17", "Empleado"));
-        //}else{
-         //   JOptionPane.showMessageDialog(this, "No coinciden los datos dados o dejó los campos en vacio, por favor verifique");
-        //}
+        }else{
+            JOptionPane.showMessageDialog(this, "No coinciden los datos dados o dejó los campos en vacio, por favor verifique");
+        }
         
         jTextField1.setText("");
         jTextField2.setText("");
